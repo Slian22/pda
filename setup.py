@@ -3,7 +3,7 @@ from parseDblpAbstract import name, executable_name
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-VERSION = "0.0.0"
+VERSION = "0.0.1"
 
 setup(
     name=name,

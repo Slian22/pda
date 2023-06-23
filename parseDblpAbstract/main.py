@@ -246,16 +246,17 @@ def stat():
     """
     统计当前数据
     """
-    ls = os.listdir(os.path.join(os.getcwd(), "dist"))
+    ls = os.listdir(os.getcwd())
     ls = [i for i in ls if i.endswith(".json")]
 
     total = 0
     for i in ls:
-        with open(os.path.join(os.getcwd(), "dist", i), "r") as f:
+        with open(os.path.join(os.getcwd(), i), "r") as f:
             import json
             data = json.load(f)
         total += len(data['result']['hits']['hit'])
     QproDefaultConsole.print(QproInfoString, f"Total: {total}")
+
 
 @app.command()
 def table(name: str, paths: list):
@@ -265,7 +266,7 @@ def table(name: str, paths: list):
     :param path: json file
     """
     import re
-    with open(f'dist/{name}.md', 'w', encoding='utf-8') as f:
+    with open(f'{name}.md', 'w', encoding='utf-8') as f:
         f.write(f"|年份|会议|论文标题|GPT-3 相关性|总结|\n")
         f.write(f"|---|---|---|---|---|\n")
         total_data = []
@@ -368,7 +369,7 @@ def dblp(keyword: str, is_exact: bool = False, venue: str = '', year: int = 0, j
         #             index = _id
         #             break
         #     data['result']['hits']['hit'].pop(index)
-    with open(f"dist/{raw_title}-{venue if venue else journal}.json", "w") as f:
+    with open(f"{raw_title}-{venue if venue else journal}.json", "w") as f:
         import json
         json.dump(data, f, ensure_ascii=False, indent=4)
 
@@ -378,10 +379,10 @@ def remove_empty():
     """
     删除没有 info->ee 的数据
     """
-    ls = os.listdir(os.path.join(os.getcwd(), "dist"))
+    ls = os.listdir(os.getcwd())
     ls = [i for i in ls if i.endswith(".json")]
     for i in ls:
-        with open(os.path.join(os.getcwd(), "dist", i), "r") as f:
+        with open(os.path.join(os.getcwd(), i), "r") as f:
             import json
             data = json.load(f)
         delete = []
@@ -395,9 +396,9 @@ def remove_empty():
                     break
             data['result']['hits']['hit'].pop(index)
         if len(data['result']['hits']['hit']) == 0:
-            os.remove(os.path.join(os.getcwd(), "dist", i))
+            os.remove(os.path.join(os.getcwd(), i))
             continue
-        with open(os.path.join(os.getcwd(), "dist", i), "w") as f:
+        with open(os.path.join(os.getcwd(), i), "w") as f:
             import json
             json.dump(data, f, ensure_ascii=False, indent=4)
 
@@ -413,7 +414,7 @@ def get_bibtex(name: str, paths: list):
     
     import requests
     writed = set()
-    with open(os.path.join(os.getcwd(), "dist", name + '.bib'), "w") as f:
+    with open(os.path.join(os.getcwd(), name + '.bib'), "w") as f:
         for path in paths:
             if not path.endswith(".json"):
                 continue
