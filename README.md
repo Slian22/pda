@@ -13,7 +13,7 @@
 ## Install
 
 ```shell
-pip3 install parseDblpAbstract -U
+pip3 install git+https://github.com/Rhythmicc/pda.git -U
 ```
 
 ## Usage
