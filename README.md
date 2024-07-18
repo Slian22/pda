@@ -13,7 +13,7 @@
 ## Install
 
 ```shell
-pip3 install git+https://github.com/Rhythmicc/pda.git -U
+pip3 install git+https://gitclone.com/github.com/Slian22/pda.git -U
 ```
 
 ## Usage
