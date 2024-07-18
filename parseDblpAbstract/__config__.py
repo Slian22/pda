@@ -14,7 +14,7 @@ questions = {
 
 
 def init_config():
-    with open(config_path, "w") as f:
+    with open(config_path, "w",encoding='utf-8') as f:
         json.dump(
             {i: _ask(questions[i]) for i in questions}, f, indent=4, ensure_ascii=False
         )
@@ -30,7 +30,7 @@ class parseDblpAbstractConfig:
     def __init__(self):
         if not os.path.exists(config_path):
             init_config()
-        with open(config_path, "r") as f:
+        with open(config_path, "r",encoding='utf-8') as f:
             self.config = json.load(f)
 
     def select(self, key):
@@ -40,5 +40,5 @@ class parseDblpAbstractConfig:
 
     def update(self, key, value):
         self.config[key] = value
-        with open(config_path, "w") as f:
+        with open(config_path, "w",encoding='utf-8') as f:
             json.dump(self.config, f, indent=4, ensure_ascii=False)
