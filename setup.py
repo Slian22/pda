@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from parseDblpAbstract import name, executable_name
 
-with open("README.md", "r") as fh:
+with open("README.md", "r",encoding='utf-8') as fh:
     long_description = fh.read()
 VERSION = "0.0.1"
 
