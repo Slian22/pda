@@ -10,7 +10,7 @@ _path = None
 _data = None
 
 def save():
-    with open(_path, "w") as f:
+    with open(_path, "w",encoding='utf-8') as f:
         import json
         json.dump(_data, f, indent=4, ensure_ascii=False)
 
